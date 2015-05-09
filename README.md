@@ -30,11 +30,11 @@ Read and write CSV converting to or from Smalltalk objects.  Port from https://g
 19. Do not file in class #NeoCSVBenchmark as it gives a waring Wthat ZnBufferedWriteStream and ZnBufferedReadStream are not defined.
 20. Created a package 'Neo-CSV-Tests'
 
-# Evaluate result of section 1
+# Run Unit test on result of section 1
 
 - Run tests in SUnit. Result is that 48 out of 50 tests have an error.
-- This mainly is caused by the construction of test data which is done ``String crlf join:`` as the following example shows
-    input := (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
-  
 
 
+# Result after fixing issues 1 to 3
+
+49 out of 50 tests are green.

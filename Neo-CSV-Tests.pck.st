@@ -101,7 +101,7 @@ testEmbeddedQuotes
 !NeoCSVReaderTests methodsFor: 'testing'!
 testEmptyConversions
 	| temp1 |
-	temp1 _ String crlf join: #('1,2.5,foo' ',,' ).
+	temp1 _ String crlfString join: #('1,2.5,foo' ',,' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -114,7 +114,7 @@ testEmptyConversions
 !NeoCSVReaderTests methodsFor: 'testing'!
 testEmptyConversionsTestObject
 	| temp1 |
-	temp1 _ String crlf join: #('1,2.5,foo' ',,' ).
+	temp1 _ String crlfString join: #('1,2.5,foo' ',,' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -218,7 +218,7 @@ testOneLineUnquoted
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadAsByteArrays
 	| temp1 |
-	temp1 _ String crlf join: #('1,2,3' '1,2,3' '1,2,3' '' ).
+	temp1 _ String crlfString join: #('1,2,3' '1,2,3' '1,2,3' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -232,7 +232,7 @@ testReadAsByteArrays
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadAsIntegerArrays
 	| temp1 |
-	temp1 _ String crlf join: #('100,200,300' '100,200,300' '100,200,300' '' ).
+	temp1 _ String crlfString join: #('100,200,300' '100,200,300' '100,200,300' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -246,7 +246,7 @@ testReadAsIntegerArrays
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadDictionaries
 	| temp1 |
-	temp1 _ String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
+	temp1 _ String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -261,7 +261,7 @@ testReadDictionaries
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadHeader
 	| temp1 |
-	temp1 _ String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
+	temp1 _ String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
 	self
 		assert: (NeoCSVReader on: temp1 readStream) readHeader
 		equals: #('x' 'y' 'z' ).! !
@@ -269,7 +269,7 @@ testReadHeader
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadIntegers
 	| temp1 |
-	temp1 _ String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
+	temp1 _ String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -283,7 +283,7 @@ testReadIntegers
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadIntegersReadingHeaderAfterFieldDefinitions
 	| temp1 |
-	temp1 _ String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
+	temp1 _ String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -297,7 +297,7 @@ testReadIntegersReadingHeaderAfterFieldDefinitions
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadTestsObjects
 	| temp1 |
-	temp1 _ String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
+	temp1 _ String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -312,7 +312,7 @@ testReadTestsObjects
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadTestsObjectsUsingBlockAccessors
 	| temp1 |
-	temp1 _ String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
+	temp1 _ String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -330,7 +330,7 @@ testReadTestsObjectsUsingBlockAccessors
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadTestsObjectsWithIgnoredField
 	| temp1 |
-	temp1 _ String crlf join: #('"x","y",''-'',"z"' '100,200,a,300' '100,200,b,300' '100,200,c,300' '' ).
+	temp1 _ String crlfString join: #('"x","y",''-'',"z"' '100,200,a,300' '100,200,b,300' '100,200,c,300' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -346,7 +346,7 @@ testReadTestsObjectsWithIgnoredField
 !NeoCSVReaderTests methodsFor: 'testing'!
 testReadWithIgnoredField
 	| temp1 |
-	temp1 _ String crlf join: #('1,2,a,3' '1,2,b,3' '1,2,c,3' '' ).
+	temp1 _ String crlfString join: #('1,2,a,3' '1,2,b,3' '1,2,c,3' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -360,7 +360,7 @@ testReadWithIgnoredField
 !NeoCSVReaderTests methodsFor: 'testing'!
 testSimpleCrLfQuoted
 	| temp1 |
-	temp1 _ String crlf join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '' ).
+	temp1 _ String crlfString join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '' ).
 	self
 		assert: (NeoCSVReader on: temp1 readStream) upToEnd
 		equals: #(#('1' '2' '3') #('4' '5' '6') #('7' '8' '9') ).! !
@@ -368,7 +368,7 @@ testSimpleCrLfQuoted
 !NeoCSVReaderTests methodsFor: 'testing'!
 testSimpleCrLfUnquoted
 	| temp1 |
-	temp1 _ String crlf join: #('1,2,3' '4,5,6' '7,8,9' '' ).
+	temp1 _ String crlfString join: #('1,2,3' '4,5,6' '7,8,9' '' ).
 	self
 		assert: (NeoCSVReader on: temp1 readStream) upToEnd
 		equals: #(#('1' '2' '3') #('4' '5' '6') #('7' '8' '9') ).! !
@@ -376,7 +376,7 @@ testSimpleCrLfUnquoted
 !NeoCSVReaderTests methodsFor: 'testing'!
 testSimpleCrQuoted
 	| temp1 |
-	temp1 _ String cr join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '' ).
+	temp1 _ String crString join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '' ).
 	self
 		assert: (NeoCSVReader on: temp1 readStream) upToEnd
 		equals: #(#('1' '2' '3') #('4' '5' '6') #('7' '8' '9') ).! !
@@ -384,7 +384,7 @@ testSimpleCrQuoted
 !NeoCSVReaderTests methodsFor: 'testing'!
 testSimpleCrUnquoted
 	| temp1 |
-	temp1 _ String cr join: #('1,2,3' '4,5,6' '7,8,9' '' ).
+	temp1 _ String crString join: #('1,2,3' '4,5,6' '7,8,9' '' ).
 	self
 		assert: (NeoCSVReader on: temp1 readStream) upToEnd
 		equals: #(#('1' '2' '3') #('4' '5' '6') #('7' '8' '9') ).! !
@@ -392,7 +392,7 @@ testSimpleCrUnquoted
 !NeoCSVReaderTests methodsFor: 'testing'!
 testSimpleLfQuoted
 	| temp1 |
-	temp1 _ String lf join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '' ).
+	temp1 _ String lfString join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '' ).
 	self
 		assert: (NeoCSVReader on: temp1 readStream) upToEnd
 		equals: #(#('1' '2' '3') #('4' '5' '6') #('7' '8' '9') ).! !
@@ -400,7 +400,7 @@ testSimpleLfQuoted
 !NeoCSVReaderTests methodsFor: 'testing'!
 testSimpleLfUnquoted
 	| temp1 |
-	temp1 _ String lf join: #('1,2,3' '4,5,6' '7,8,9' '' ).
+	temp1 _ String lfString join: #('1,2,3' '4,5,6' '7,8,9' '' ).
 	self
 		assert: (NeoCSVReader on: temp1 readStream) upToEnd
 		equals: #(#('1' '2' '3') #('4' '5' '6') #('7' '8' '9') ).! !
@@ -408,7 +408,7 @@ testSimpleLfUnquoted
 !NeoCSVReaderTests methodsFor: 'testing'!
 testSimpleSemiColonDelimited
 	| temp1 |
-	temp1 _ String crlf join: #('1;2;3' '4;5;6' '7;8;9' '' ).
+	temp1 _ String crlfString join: #('1;2;3' '4;5;6' '7;8;9' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -419,7 +419,7 @@ testSimpleSemiColonDelimited
 !NeoCSVReaderTests methodsFor: 'testing'!
 testSimpleTabDelimited
 	| temp1 |
-	temp1 _ String crlf join: #('1	2	3' '4	5	6' '7	8	9' '' ).
+	temp1 _ String crlfString join: #('1	2	3' '4	5	6' '7	8	9' '' ).
 	self
 		assert:
 			((NeoCSVReader on: temp1 readStream)
@@ -452,7 +452,7 @@ testEmptyFieldValue
 				(NeoCSVWriter on: arg1)
 					nextPut: #(#one #two #three );
 					nextPutAll: #(#(1 2 nil) #(4 nil 6) #(nil 8 9) ) ])
-		equals: (String crlf join: #('"one","two","three"' '"1","2",""' '"4","","6"' '"","8","9"' '' )).
+		equals: (String crlfString join: #('"one","two","three"' '"1","2",""' '"4","","6"' '"","8","9"' '' )).
 	self
 		assert:
 			(String streamContents: [ :arg1 |
@@ -460,7 +460,7 @@ testEmptyFieldValue
 					emptyFieldValue: #empty;
 					nextPut: #(#one #two #three );
 					nextPutAll: #(#(1 2 #empty) #(4 #empty 6) #(#empty 8 9) ) ])
-		equals: (String crlf join: #('"one","two","three"' '"1","2",""' '"4","","6"' '"","8","9"' '' )).
+		equals: (String crlfString join: #('"one","two","three"' '"1","2",""' '"4","","6"' '"","8","9"' '' )).
 	self
 		assert:
 			(String streamContents: [ :arg1 |
@@ -468,7 +468,7 @@ testEmptyFieldValue
 					emptyFieldValue: Object new;
 					nextPut: #(#one #two #three );
 					nextPutAll: #(#(1 2 nil) #(4 nil 6) #(nil 8 9) ) ])
-		equals: (String crlf join: #('"one","two","three"' '"1","2","nil"' '"4","nil","6"' '"nil","8","9"' '' )).! !
+		equals: (String crlfString join: #('"one","two","three"' '"1","2","nil"' '"4","nil","6"' '"nil","8","9"' '' )).! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testObjectFieldsTestObjects
@@ -479,7 +479,7 @@ testObjectFieldsTestObjects
 					nextPut: #(#x #y #z );
 					addObjectFields: #(#x #y #z );
 					nextPutAll: {NeoCSVTestObject example. NeoCSVTestObject example. NeoCSVTestObject example} ])
-		equals: (String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' )).! !
+		equals: (String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' )).! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testObjectFieldsTestObjectsExtra
@@ -495,7 +495,7 @@ testObjectFieldsTestObjectsExtra
 					addConstantField: 'X';
 					addObjectField: #z;
 					nextPutAll: {NeoCSVTestObject example. NeoCSVTestObject example. NeoCSVTestObject example} ])
-		equals: (String crlf join: #('x,empty,y,constant,z' '100,,200,X,300' '100,,200,X,300' '100,,200,X,300' '' )).! !
+		equals: (String crlfString join: #('x,empty,y,constant,z' '100,,200,X,300' '100,,200,X,300' '100,,200,X,300' '' )).! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testObjectFieldsTestObjectsUsingBlockAccessors
@@ -509,7 +509,7 @@ testObjectFieldsTestObjectsUsingBlockAccessors
 						arg2 y ]. [ :arg2 |
 						arg2 z ]};
 					nextPutAll: {NeoCSVTestObject example. NeoCSVTestObject example. NeoCSVTestObject example} ])
-		equals: (String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' )).! !
+		equals: (String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' )).! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testRawFieldsDictionaries
@@ -520,7 +520,7 @@ testRawFieldsDictionaries
 					nextPut: #(#x #y #z );
 					addRawFieldsAt: #(#x #y #z );
 					nextPutAll: {Dictionary newFromPairs: #(#x 100 #y 200 #z 300 ). Dictionary newFromPairs: #(#x 400 #y 500 #z 600 ). Dictionary newFromPairs: #(#x 700 #y 800 #z 900 )} ])
-		equals: (String crlf join: #('"x","y","z"' '100,200,300' '400,500,600' '700,800,900' '' )).! !
+		equals: (String crlfString join: #('"x","y","z"' '100,200,300' '400,500,600' '700,800,900' '' )).! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testRawFieldsTestObjects
@@ -531,7 +531,7 @@ testRawFieldsTestObjects
 					nextPut: #(#x #y #z );
 					addRawFields: #(#x #y #z );
 					nextPutAll: {NeoCSVTestObject example. NeoCSVTestObject example. NeoCSVTestObject example} ])
-		equals: (String crlf join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' )).! !
+		equals: (String crlfString join: #('"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '' )).! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testSimple
@@ -541,7 +541,7 @@ testSimple
 				(NeoCSVWriter on: arg1)
 					nextPut: #(#one #two #three );
 					nextPutAll: #(#(1 2 3) #(4 5 6) #(7 8 9) ) ])
-		equals: (String crlf join: #('"one","two","three"' '"1","2","3"' '"4","5","6"' '"7","8","9"' '' )).! !
+		equals: (String crlfString join: #('"one","two","three"' '"1","2","3"' '"4","5","6"' '"7","8","9"' '' )).! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testSimpleRaw
@@ -552,7 +552,7 @@ testSimpleRaw
 					fieldWriter: #raw;
 					nextPut: #(#one #two #three );
 					nextPutAll: #(#(1 2 3) #(4 5 6) #(7 8 9) ) ])
-		equals: (String crlf join: #('one,two,three' '1,2,3' '4,5,6' '7,8,9' '' )).! !
+		equals: (String crlfString join: #('one,two,three' '1,2,3' '4,5,6' '7,8,9' '' )).! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testWriteEmbeddedQuote
@@ -561,7 +561,7 @@ testWriteEmbeddedQuote
 		(NeoCSVWriter on: arg2) nextPut: #(#foo 'x"y"z' ) ].
 	self
 		assert: temp1
-		equals: '"foo","x""y""z"' , String crlf.! !
+		equals: '"foo","x""y""z"' , String crlfString.! !
 
 !NeoCSVWriterTests methodsFor: 'testing'!
 testWriteHeader
@@ -570,7 +570,7 @@ testWriteHeader
 		(NeoCSVWriter on: arg2) writeHeader: #(#foo #bar ) ].
 	self
 		assert: temp1
-		equals: '"foo","bar"' , String crlf.! !
+		equals: '"foo","bar"' , String crlfString.! !
 
 !NeoNumberParserTests methodsFor: 'testing'!
 testBinaryIntegers
