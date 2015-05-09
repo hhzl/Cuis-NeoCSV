@@ -2,7 +2,9 @@
 Read and write CSV converting to or from Smalltalk objects.  Port from https://github.com/svenvc/NeoCVS
 
 
-# Section 1 -- file out / file in
+# Section 1 -- Initial port without fixes
+
+## File out from Pharo 4.0  / File in into Cuis
 
 1. In Pharo 4.0 (May 2015) load NeoCSV package (one-click).
 2. File out class packages
@@ -30,12 +32,20 @@ Read and write CSV converting to or from Smalltalk objects.  Port from https://g
 19. Do not file in class #NeoCSVBenchmark as it gives a waring Wthat ZnBufferedWriteStream and ZnBufferedReadStream are not defined.
 20. Created a package 'Neo-CSV-Tests'
 
-# Run Unit test on result of section 1
+## Unit tests 
 
-- Run tests in SUnit. Result is that 48 out of 50 tests have an error.
+Run SUnit tests on code which was filed in:
+
+Result is that 48 out of 50 tests have an error.
 
 
-# Section 2 -- Code changes 
+# Section 2 -- Analysis
+
+1. [Failing tests caused by changed selector names](https://github.com/hhzl/Cuis-NeoCSV/issues/1)
+2. [Failing tests caused by unimplemented methods with a straightforward alternative](https://github.com/hhzl/Cuis-NeoCSV/issues/2)
+3. [Failing tests caused by missing methods in Cuis](https://github.com/hhzl/Cuis-NeoCSV/issues/3)
+
+# Section 3 -- Code changes 
 
 ## Result after fixing issues 1 to 3
 
