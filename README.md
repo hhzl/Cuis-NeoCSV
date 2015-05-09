@@ -62,3 +62,4 @@ It is left with issue [#4 #testHexadecimalIntegers] (https://github.com/hhzl/Cui
 - Issue #4 is a minor error and needs no fixing in order to use this package.
 - Class #NeoCSVBenchmark has not been ported.
 - Major port is done as of May 2015. Minor fixes later.
+- [Documentation](https://github.com/svenvc/docs/blob/master/neo/neo-csv-paper.md)
