@@ -2,7 +2,7 @@
 Read and write CSV converting to or from Smalltalk objects.  Port from https://github.com/svenvc/NeoCVS
 
 
-# Porting log section 1
+# Section 1 -- file out / file in
 
 1. In Pharo 4.0 (May 2015) load NeoCSV package (one-click).
 2. File out class packages
@@ -35,6 +35,20 @@ Read and write CSV converting to or from Smalltalk objects.  Port from https://g
 - Run tests in SUnit. Result is that 48 out of 50 tests have an error.
 
 
-# Result after fixing issues 1 to 3
+# Section 2 -- Code changes 
+
+## Result after fixing issues 1 to 3
+
+After fixing issues #1 to #3
 
 49 out of 50 tests are green.
+
+## Known  bug
+
+It is left with issue [#4 #testHexadecimalIntegers] (https://github.com/hhzl/Cuis-NeoCSV/issues/4)
+
+
+## Conclusion -- Port status
+- Issue #4 is a minor error and needs no fixing in order to use this package.
+- Class #NeoCSVBenchmark has not been ported.
+- Major port is done as of May 2015. Minor fixes later.
