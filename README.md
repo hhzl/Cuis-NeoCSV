@@ -1,5 +1,6 @@
 # Cuis-NeoCSV
-Read and write CSV converting to or from Smalltalk objects.  Port from https://github.com/svenvc/NeoCVS
+Read and write CSV converting to or from Smalltalk objects.  
+Port from https://github.com/svenvc/NeoCVS
 
 Log of port of version 
 
@@ -31,28 +32,19 @@ For Cuis version Cuis4.2-2243.image
 5. Install package SqueakCompatibility.pck.st
 6. Do the following string replacements in the original files
 
-   Replace
-        codePoint
-   with
-        unicodeCodePoint
+   Replace ``codePoint``
+   with ``unicodeCodePoint``
 
-   Replace
-        String crlf
-   with
-        String crlfString
+   Replace ``String crlf``
+   with ``String crlfString``
 
-   Replace
-        String cr
-   with
-        String crString
+   Replace ``String cr ``
+   with ``String crString ``
 
    Note: there is a space after 'cr' and 'crString'
 
-   Replace
-        String lf
-   with
-        String lfString
-
+   Replace ``String lf``
+   with ``String lfString``
 
 5. Get code browser on 'Neo-CSV-Core-orig.st'
 6. File in classes in the following order
@@ -97,8 +89,7 @@ The following test fails
 
 The test does not fail if the code is changed to
 
-
-    testHexadecimalIntegers
+     testHexadecimalIntegers
 	self assert: (NeoNumberParser parse: '7B' base: 16) equals: 123.
 	"self assert: (NeoNumberParser parse: '7b' base: 16) equals: 123."
 	self assert: (NeoNumberParser parse: '-7B' base: 16) equals: -123.
@@ -121,29 +112,22 @@ Fix code as described under section 2 -- analysis
 ## Conclusion -- Port status
 
 - The port is OK.
-- The package requires SqueakCompatibility.pck.st to be loaded and at least Cuis4.2-2243.image
+- The package requires ``SqueakCompatibility.pck.st`` to be loaded and at least Cuis4.2-2243.image
 - The following changes were applied to the code before file in
-   Replace
-        codePoint
-   with
-        unicodeCodePoint
 
-   Replace
-        String crlf
-   with
-        String crlfString
+   Replace ``codePoint``
+   with ``unicodeCodePoint``
 
-   Replace
-        String cr
-   with
-        String crString
+   Replace ``String crlf``
+   with ``String crlfString``
+
+   Replace ``String cr ``
+   with ``String crString ``
 
    Note: there is a space after 'cr' and 'crString'
 
-   Replace
-        String lf
-   with
-        String lfString
+   Replace ``String lf``
+   with ``String lfString``
 
 - Class #NeoCSVBenchmark has not been ported.
 - Major port is done as of May 2015. 
