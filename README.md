@@ -1,6 +1,6 @@
 # Cuis-NeoCSV
 Read and write CSV converting to or from Smalltalk objects.  
-Port from https://github.com/svenvc/NeoCVS
+Port from http://www.smalltalkhub.com/#!/~SvenVanCaekenberghe/Neo
 
 Log of port of version 
 
