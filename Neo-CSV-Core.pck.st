@@ -1,6 +1,6 @@
-'From Cuis 6.0 [latest update: #5940] on 21 July 2023 at 11:26:34 pm'!
+'From Cuis 6.0 [latest update: #5940] on 23 July 2023 at 1:46:22 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Neo-CSV-Core' 1 1!
+!provides: 'Neo-CSV-Core' 1 2!
 SystemOrganization addCategory: 'Neo-CSV-Core'!
 
 
@@ -270,21 +270,21 @@ peekEndOfLine
 	char := self peekChar codePoint.
 	^ (char == 10 "Character lf" ) or: [ char == 13 "Character cr" ]! !
 
-!NeoCSVReader methodsFor: 'private' stamp: 'SvenVanCaekenberghe 1/14/2014 23:46'!
+!NeoCSVReader methodsFor: 'private' stamp: 'hlsf 7/23/2023 13:38:33'!
 peekFor: character
-	self peekChar == character
+	self peekChar = character
 		ifTrue: [ 
 			self nextChar. 
 			^ true ].
 	^ false! !
 
-!NeoCSVReader methodsFor: 'private' stamp: 'SvenVanCaekenberghe 6/25/2012 20:56'!
+!NeoCSVReader methodsFor: 'private' stamp: 'hlsf 7/23/2023 13:38:28'!
 peekQuote
-	^ self peekChar == $"! !
+	^ self peekChar = $"! !
 
-!NeoCSVReader methodsFor: 'private' stamp: 'SvenVanCaekenberghe 1/15/2014 09:58'!
+!NeoCSVReader methodsFor: 'private' stamp: 'hlsf 7/23/2023 13:38:21'!
 peekSeparator
-	^ self peekChar == separator! !
+	^ self peekChar = separator! !
 
 !NeoCSVReader methodsFor: 'private' stamp: 'SvenVanCaekenberghe 1/15/2014 09:54'!
 readAtEndOrEndOfLine

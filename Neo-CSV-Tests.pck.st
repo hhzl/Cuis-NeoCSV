@@ -1,49 +1,49 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2322] on 14 May 2015 at 8:10:57.756618 pm'!
+'From Cuis 6.0 [latest update: #5940] on 23 July 2023 at 1:16:28 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Neo-CSV-Tests' 1 1!
-!classDefinition: #NeoCSVTestObject category: #'Neo-CSV-Tests'!
-Object subclass: #NeoCSVTestObject
-	instanceVariableNames: 'x y z'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Neo-CSV-Tests'!
-!classDefinition: 'NeoCSVTestObject class' category: #'Neo-CSV-Tests'!
-NeoCSVTestObject class
-	instanceVariableNames: ''!
+!provides: 'Neo-CSV-Tests' 1 2!
+SystemOrganization addCategory: 'Neo-CSV-Tests'!
 
-!classDefinition: #NeoCSVReaderTests category: #'Neo-CSV-Tests'!
+
+!classDefinition: #NeoCSVReaderTests category: 'Neo-CSV-Tests'!
 TestCase subclass: #NeoCSVReaderTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Neo-CSV-Tests'!
-!classDefinition: 'NeoCSVReaderTests class' category: #'Neo-CSV-Tests'!
+!classDefinition: 'NeoCSVReaderTests class' category: 'Neo-CSV-Tests'!
 NeoCSVReaderTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #NeoCSVWriterTests category: #'Neo-CSV-Tests'!
+!classDefinition: #NeoCSVWriterTests category: 'Neo-CSV-Tests'!
 TestCase subclass: #NeoCSVWriterTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Neo-CSV-Tests'!
-!classDefinition: 'NeoCSVWriterTests class' category: #'Neo-CSV-Tests'!
+!classDefinition: 'NeoCSVWriterTests class' category: 'Neo-CSV-Tests'!
 NeoCSVWriterTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #NeoNumberParserTests category: #'Neo-CSV-Tests'!
+!classDefinition: #NeoNumberParserTests category: 'Neo-CSV-Tests'!
 TestCase subclass: #NeoNumberParserTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Neo-CSV-Tests'!
-!classDefinition: 'NeoNumberParserTests class' category: #'Neo-CSV-Tests'!
+!classDefinition: 'NeoNumberParserTests class' category: 'Neo-CSV-Tests'!
 NeoNumberParserTests class
 	instanceVariableNames: ''!
 
+!classDefinition: #NeoCSVTestObject category: 'Neo-CSV-Tests'!
+Object subclass: #NeoCSVTestObject
+	instanceVariableNames: 'x y z'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Neo-CSV-Tests'!
+!classDefinition: 'NeoCSVTestObject class' category: 'Neo-CSV-Tests'!
+NeoCSVTestObject class
+	instanceVariableNames: ''!
 
-!NeoCSVTestObject commentStamp: '<historical>' prior: 0!
-I am NeoCSVTestObject.!
 
 !NeoCSVReaderTests commentStamp: '<historical>' prior: 0!
 I am NeoCSVReaderTests, a suite of unit tests for NeoCSVReader.
@@ -56,57 +56,8 @@ I am NeoCSVWriterTests, a suite of unit tests for NeoCSVWriter.
 !NeoNumberParserTests commentStamp: '<historical>' prior: 0!
 I am NeoNumberParserTests the unit test suite for NeoNumberParser.!
 
-!NeoCSVTestObject methodsFor: 'comparing' stamp: 'SvenVanCaekenberghe 6/16/2012 18:58'!
-= anObject
-	self == anObject
-		ifTrue: [ ^ true ].
-	self class = anObject class
-		ifFalse: [ ^ false ].
-	^ x = anObject x
-		and: [
-			y = anObject y
-				and: [
-					z = anObject z ] ]! !
-
-!NeoCSVTestObject methodsFor: 'comparing' stamp: 'SvenVanCaekenberghe 6/16/2012 18:58'!
-hash
-	^ x hash bitXor: (y hash bitXor: z)! !
-
-!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
-x
-	^ x! !
-
-!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
-x: anObject
-	x := anObject! !
-
-!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
-y
-	^ y! !
-
-!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
-y: anObject
-	y := anObject! !
-
-!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
-z
-	^ z! !
-
-!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
-z: anObject
-	z := anObject! !
-
-!NeoCSVTestObject class methodsFor: 'instance creation' stamp: 'SvenVanCaekenberghe 11/4/2012 19:40'!
-example
-	^ self x: 100 y: 200 z: 300! !
-
-!NeoCSVTestObject class methodsFor: 'instance creation' stamp: 'SvenVanCaekenberghe 11/4/2012 19:39'!
-x: x y: y z: z
-	^ self new
-		x: x;
-		y: y;
-		z: z;
-		yourself! !
+!NeoCSVTestObject commentStamp: '<historical>' prior: 0!
+I am NeoCSVTestObject.!
 
 !NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 1/14/2014 23:20'!
 testEmbeddedQuotes
@@ -289,10 +240,21 @@ testReadDictionaries
 					Dictionary newFromPairs: #(x 100 y 200 z 300). 
 					Dictionary newFromPairs: #(x 100 y 200 z 300) }! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/13/2014 16:31'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 7/22/2023 12:55:11'!
 testReadHeader
 	| input |
 	input := (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
+	self 
+		assert: (NeoCSVReader on: input readStream) readHeader
+		equals: #('x' 'y' 'z')! !
+
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 7/23/2023 13:07:44'!
+testReadHeaderUnicode
+	| input |
+	input := (UnicodeString newFrom:  'x,y,z
+100,200,300
+100,200,300
+100,200,300').
 	self 
 		assert: (NeoCSVReader on: input readStream) readHeader
 		equals: #('x' 'y' 'z')! !
@@ -666,3 +628,55 @@ testOctalIntegers
 	self assert: (NeoNumberParser parse: '0' base: 8) equals: 0.
 
 ! !
+
+!NeoCSVTestObject methodsFor: 'comparing' stamp: 'SvenVanCaekenberghe 6/16/2012 18:58'!
+= anObject
+	self == anObject
+		ifTrue: [ ^ true ].
+	self class = anObject class
+		ifFalse: [ ^ false ].
+	^ x = anObject x
+		and: [
+			y = anObject y
+				and: [
+					z = anObject z ] ]! !
+
+!NeoCSVTestObject methodsFor: 'comparing' stamp: 'SvenVanCaekenberghe 6/16/2012 18:58'!
+hash
+	^ x hash bitXor: (y hash bitXor: z)! !
+
+!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
+x
+	^ x! !
+
+!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
+x: anObject
+	x := anObject! !
+
+!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
+y
+	^ y! !
+
+!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
+y: anObject
+	y := anObject! !
+
+!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
+z
+	^ z! !
+
+!NeoCSVTestObject methodsFor: 'accessing' stamp: 'SvenVanCaekenberghe 6/15/2012 22:40'!
+z: anObject
+	z := anObject! !
+
+!NeoCSVTestObject class methodsFor: 'instance creation' stamp: 'SvenVanCaekenberghe 11/4/2012 19:40'!
+example
+	^ self x: 100 y: 200 z: 300! !
+
+!NeoCSVTestObject class methodsFor: 'instance creation' stamp: 'SvenVanCaekenberghe 11/4/2012 19:39'!
+x: x y: y z: z
+	^ self new
+		x: x;
+		y: y;
+		z: z;
+		yourself! !
