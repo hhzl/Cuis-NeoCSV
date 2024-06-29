@@ -1,46 +1,46 @@
-'From Cuis 6.0 [latest update: #5940] on 23 July 2023 at 1:16:28 pm'!
+'From Cuis7.0 [latest update: #6452] on 28 June 2024 at 11:55:38 am'!
 'Description Please enter a description for this package'!
-!provides: 'Neo-CSV-Tests' 1 2!
-SystemOrganization addCategory: 'Neo-CSV-Tests'!
+!provides: 'Neo-CSV-Tests' 1 3!
+SystemOrganization addCategory: #'Neo-CSV-Tests'!
 
 
-!classDefinition: #NeoCSVReaderTests category: 'Neo-CSV-Tests'!
+!classDefinition: #NeoCSVReaderTests category: #'Neo-CSV-Tests'!
 TestCase subclass: #NeoCSVReaderTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Neo-CSV-Tests'!
-!classDefinition: 'NeoCSVReaderTests class' category: 'Neo-CSV-Tests'!
+!classDefinition: 'NeoCSVReaderTests class' category: #'Neo-CSV-Tests'!
 NeoCSVReaderTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #NeoCSVWriterTests category: 'Neo-CSV-Tests'!
+!classDefinition: #NeoCSVWriterTests category: #'Neo-CSV-Tests'!
 TestCase subclass: #NeoCSVWriterTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Neo-CSV-Tests'!
-!classDefinition: 'NeoCSVWriterTests class' category: 'Neo-CSV-Tests'!
+!classDefinition: 'NeoCSVWriterTests class' category: #'Neo-CSV-Tests'!
 NeoCSVWriterTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #NeoNumberParserTests category: 'Neo-CSV-Tests'!
+!classDefinition: #NeoNumberParserTests category: #'Neo-CSV-Tests'!
 TestCase subclass: #NeoNumberParserTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Neo-CSV-Tests'!
-!classDefinition: 'NeoNumberParserTests class' category: 'Neo-CSV-Tests'!
+!classDefinition: 'NeoNumberParserTests class' category: #'Neo-CSV-Tests'!
 NeoNumberParserTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #NeoCSVTestObject category: 'Neo-CSV-Tests'!
+!classDefinition: #NeoCSVTestObject category: #'Neo-CSV-Tests'!
 Object subclass: #NeoCSVTestObject
 	instanceVariableNames: 'x y z'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Neo-CSV-Tests'!
-!classDefinition: 'NeoCSVTestObject class' category: 'Neo-CSV-Tests'!
+!classDefinition: 'NeoCSVTestObject class' category: #'Neo-CSV-Tests'!
 NeoCSVTestObject class
 	instanceVariableNames: ''!
 
@@ -65,10 +65,10 @@ testEmbeddedQuotes
 		assert: (NeoCSVReader on: '1,"x""y""z",3' readStream) upToEnd
 		equals: #(('1' 'x"y"z' '3'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 11/4/2012 19:54'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:41:59'!
 testEmptyConversions
 	| input |
-	input := (String crlf join: #( '1,2.5,foo' ',,' )).
+	input := (String crlfString join: #( '1,2.5,foo' ',,' )).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					addIntegerField;
@@ -79,10 +79,10 @@ testEmptyConversions
 					#( 1 2.5 'foo' ). 
 					#( nil nil nil ) }! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 11/4/2012 19:54'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:42:11'!
 testEmptyConversionsTestObject
 	| input |
-	input := (String crlf join: #( '1,2.5,foo' ',,' )).
+	input := (String crlfString join: #( '1,2.5,foo' ',,' )).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					recordClass: NeoCSVTestObject;
@@ -100,16 +100,16 @@ testEmptyFieldQuoted
 		assert: (NeoCSVReader on: '"1",,"3"' readStream) upToEnd
 		equals: #(('1' nil '3'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 1/15/2014 12:10'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:47:01'!
 testEmptyFieldSecondRecordQuoted
 	self 
-		assert: (NeoCSVReader on: '"foo","bar"\"100",' withCRs readStream) upToEnd
+		assert: (NeoCSVReader on: '"foo","bar"\"100",' withNewLines readStream) upToEnd
 		equals: #(('foo' 'bar')('100' nil))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 1/15/2014 12:10'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:47:26'!
 testEmptyFieldSecondRecordUnquoted
 	self 
-		assert: (NeoCSVReader on: 'foo,bar\100,' withCRs readStream) upToEnd
+		assert: (NeoCSVReader on: 'foo,bar\100,' withNewLines readStream) upToEnd
 		equals: #(('foo' 'bar')('100' nil))! !
 
 !NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/13/2014 14:47'!
@@ -118,7 +118,7 @@ testEmptyFieldUnquoted
 		assert: (NeoCSVReader on: '1,,3' readStream) upToEnd
 		equals: #(('1' nil '3'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 9/18/2014 09:24'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:47:32'!
 testEmptyFieldValue
 	self 
 		assert: ((NeoCSVReader on: '"1",,3,"","5"' readStream) 
@@ -131,7 +131,7 @@ testEmptyFieldValue
 						upToEnd)
 		equals: #(('1' '' '3' '' '5')).
 	self 
-		assert: ((NeoCSVReader on: 'a,b,c\,,\"","",""\1,2,3\' withCRs readStream)
+		assert: ((NeoCSVReader on: 'a,b,c\,,\"","",""\1,2,3\' withNewLines readStream)
 						emptyFieldValue: #empty;
 						upToEnd)
 		equals: #(('a' 'b' 'c')(empty empty empty)(empty empty empty)('1' '2' '3'))! !
@@ -148,10 +148,10 @@ testEmptyLastFieldUnquoted
 		assert: (NeoCSVReader on: '1,2,' readStream) upToEnd
 		equals: #(('1' '2' nil))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/10/2015 21:54'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:06'!
 testNamedColumnsConfiguration
 	| input |
-	input := String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '').
+	input := String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '').
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					namedColumnsConfiguration;
@@ -191,10 +191,10 @@ testOneLineUnquoted
 		assert: (NeoCSVReader on: '1,2,3' readStream) upToEnd
 		equals: #(('1' '2' '3'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/21/2012 22:57'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:13'!
 testReadAsByteArrays
 	| input |
-	input := (String crlf join: #( '1,2,3' '1,2,3' '1,2,3' '')).
+	input := (String crlfString join: #( '1,2,3' '1,2,3' '1,2,3' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					recordClass: ByteArray;
@@ -207,10 +207,10 @@ testReadAsByteArrays
 			#[1 2 3].
 			#[1 2 3].}! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/21/2012 22:56'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:21'!
 testReadAsIntegerArrays
 	| input |
-	input := (String crlf join: #( '100,200,300' '100,200,300' '100,200,300' '')).
+	input := (String crlfString join: #( '100,200,300' '100,200,300' '100,200,300' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					recordClass: IntegerArray;
@@ -223,10 +223,10 @@ testReadAsIntegerArrays
 			#(100 200 300) asIntegerArray.
 			#(100 200 300) asIntegerArray }! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/10/2015 21:54'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:25'!
 testReadDictionaries
 	| input |
-	input := String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '').
+	input := String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '').
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					skipHeader;
@@ -240,10 +240,10 @@ testReadDictionaries
 					Dictionary newFromPairs: #(x 100 y 200 z 300). 
 					Dictionary newFromPairs: #(x 100 y 200 z 300) }! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 7/22/2023 12:55:11'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:30'!
 testReadHeader
 	| input |
-	input := (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
+	input := (String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
 	self 
 		assert: (NeoCSVReader on: input readStream) readHeader
 		equals: #('x' 'y' 'z')! !
@@ -259,10 +259,10 @@ testReadHeaderUnicode
 		assert: (NeoCSVReader on: input readStream) readHeader
 		equals: #('x' 'y' 'z')! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/5/2013 12:15'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:34'!
 testReadIntegers
 	| input |
-	input := (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
+	input := (String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					skipHeader;
@@ -272,10 +272,10 @@ testReadIntegers
 					upToEnd)
 		equals: #((100 200 300)(100 200 300)(100 200 300))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 12/11/2013 20:43'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:39'!
 testReadIntegersReadingHeaderAfterFieldDefinitions
 	| input |
-	input := (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
+	input := (String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					addIntegerField;
@@ -285,10 +285,10 @@ testReadIntegersReadingHeaderAfterFieldDefinitions
 					upToEnd)
 		equals: #((100 200 300)(100 200 300)(100 200 300))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/5/2013 12:15'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:46'!
 testReadTestsObjects
 	| input |
-	input := (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
+	input := (String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					skipHeader;
@@ -302,10 +302,10 @@ testReadTestsObjects
 					NeoCSVTestObject example. 
 					NeoCSVTestObject example }! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/13/2013 12:51'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:51'!
 testReadTestsObjectsUsingBlockAccessors
 	| input |
-	input := (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
+	input := (String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					skipHeader;
@@ -319,10 +319,10 @@ testReadTestsObjectsUsingBlockAccessors
 					NeoCSVTestObject example. 
 					NeoCSVTestObject example }! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/5/2013 13:09'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:48:56'!
 testReadTestsObjectsWithIgnoredField
 	| input |
-	input := (String crlf join: #( '"x","y",''-'',"z"' '100,200,a,300' '100,200,b,300' '100,200,c,300' '')).
+	input := (String crlfString join: #( '"x","y",''-'',"z"' '100,200,a,300' '100,200,b,300' '100,200,c,300' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					skipHeader;
@@ -337,10 +337,10 @@ testReadTestsObjectsWithIgnoredField
 					NeoCSVTestObject example. 
 					NeoCSVTestObject example }! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/5/2013 14:20'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:49:01'!
 testReadWithIgnoredField
 	| input |
-	input := (String crlf join: #( '1,2,a,3' '1,2,b,3' '1,2,c,3' '')).
+	input := (String crlfString join: #( '1,2,a,3' '1,2,b,3' '1,2,c,3' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					addIntegerField;
@@ -353,78 +353,78 @@ testReadWithIgnoredField
 			#(1 2 3).
 			#(1 2 3).}! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/17/2012 13:53'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:49:05'!
 testSimpleCrLfQuoted
 	| input |
-	input := (String crlf join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '')).
+	input := (String crlfString join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '')).
 	self 
 		assert: (NeoCSVReader on: input readStream) upToEnd
 		equals: #(('1' '2' '3')('4' '5' '6')('7' '8' '9'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/17/2012 13:56'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:49:19'!
 testSimpleCrLfUnquoted
 	| input |
-	input := (String crlf join: #('1,2,3' '4,5,6' '7,8,9' '')).
+	input := (String crlfString join: #('1,2,3' '4,5,6' '7,8,9' '')).
 	self 
 		assert: (NeoCSVReader on: input readStream) upToEnd
 		equals: #(('1' '2' '3')('4' '5' '6')('7' '8' '9'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/17/2012 13:54'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:49:25'!
 testSimpleCrQuoted
 	| input |
-	input := (String cr join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '')).
+	input := (String crString join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '')).
 	self 
 		assert: (NeoCSVReader on: input readStream) upToEnd
 		equals: #(('1' '2' '3')('4' '5' '6')('7' '8' '9'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/17/2012 13:56'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:49:57'!
 testSimpleCrUnquoted
 	| input |
-	input := (String cr join: #('1,2,3' '4,5,6' '7,8,9' '')).
+	input := (String crString join: #('1,2,3' '4,5,6' '7,8,9' '')).
 	self 
 		assert: (NeoCSVReader on: input readStream) upToEnd
 		equals: #(('1' '2' '3')('4' '5' '6')('7' '8' '9'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/17/2012 13:54'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:50:02'!
 testSimpleLfQuoted
 	| input |
-	input := (String lf join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '')).
+	input := (String lfString join: #('"1","2","3"' '"4","5","6"' '"7","8","9"' '')).
 	self 
 		assert: (NeoCSVReader on: input readStream) upToEnd
 		equals: #(('1' '2' '3')('4' '5' '6')('7' '8' '9'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/17/2012 13:56'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:50:07'!
 testSimpleLfUnquoted
 	| input |
-	input := (String lf join: #('1,2,3' '4,5,6' '7,8,9' '')).
+	input := (String lfString join: #('1,2,3' '4,5,6' '7,8,9' '')).
 	self 
 		assert: (NeoCSVReader on: input readStream) upToEnd
 		equals: #(('1' '2' '3')('4' '5' '6')('7' '8' '9'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/17/2012 13:58'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:50:12'!
 testSimpleSemiColonDelimited
 	| input |
-	input := (String crlf join: #('1;2;3' '4;5;6' '7;8;9' '')).
+	input := (String crlfString join: #('1;2;3' '4;5;6' '7;8;9' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					separator: $; ;
 					upToEnd)
 		equals: #(('1' '2' '3')('4' '5' '6')('7' '8' '9'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/17/2012 13:59'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:50:16'!
 testSimpleTabDelimited
 	| input |
-	input := (String crlf join: #('1	2	3' '4	5	6' '7	8	9' '')).
+	input := (String crlfString join: #('1	2	3' '4	5	6' '7	8	9' '')).
 	self 
 		assert: ((NeoCSVReader on: input readStream) 
 					separator: Character tab ;
 					upToEnd)
 		equals: #(('1' '2' '3')('4' '5' '6')('7' '8' '9'))! !
 
-!NeoCSVReaderTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 10/6/2014 17:46'!
+!NeoCSVReaderTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:50:52'!
 testSkippingEmptyRecords
 	| input output |
-	input := '1,2,3\\4,5,6\,,\7,8,9' withCRs.
+	input := '1,2,3\\4,5,6\,,\7,8,9' withNewLines.
 	output := (NeoCSVReader on: input readStream) 
 		select: [ :each | each notEmpty and: [ (each allSatisfy: #isNil) not ] ].
 	self assert: output equals: #(#('1' '2' '3') #('4' '5' '6') #('7' '8' '9')).
@@ -433,30 +433,30 @@ testSkippingEmptyRecords
 		select: [ :each | each notEmpty and: [ (each allSatisfy: #isEmpty) not ] ].
 	self assert: output equals: #(#('1' '2' '3') #('4' '5' '6') #('7' '8' '9'))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/13/2014 15:53'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:06'!
 testEmptyFieldValue
 	self
 		assert: (String streamContents: [ :stream |
 					(NeoCSVWriter on: stream)
 						nextPut: #(one two three);
 						nextPutAll: #( (1 2 nil) (4 nil 6) (nil 8 9)) ])
-		equals: (String crlf join: #( '"one","two","three"' '"1","2",""' '"4","","6"' '"","8","9"' '')).
+		equals: (String crlfString join: #( '"one","two","three"' '"1","2",""' '"4","","6"' '"","8","9"' '')).
 	self
 		assert: (String streamContents: [ :stream |
 					(NeoCSVWriter on: stream)
 						emptyFieldValue: #empty;
 						nextPut: #(one two three);
 						nextPutAll: #( (1 2 empty) (4 empty 6) (empty 8 9)) ])
-		equals: (String crlf join: #( '"one","two","three"' '"1","2",""' '"4","","6"' '"","8","9"' '')).
+		equals: (String crlfString join: #( '"one","two","three"' '"1","2",""' '"4","","6"' '"","8","9"' '')).
 	self
 		assert: (String streamContents: [ :stream |
 					(NeoCSVWriter on: stream)
 						emptyFieldValue: Object new;
 						nextPut: #(one two three);
 						nextPutAll: #( (1 2 nil) (4 nil 6) (nil 8 9)) ])
-		equals: (String crlf join: #( '"one","two","three"' '"1","2","nil"' '"4","nil","6"' '"nil","8","9"' ''))! !
+		equals: (String crlfString join: #( '"one","two","three"' '"1","2","nil"' '"4","nil","6"' '"nil","8","9"' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/10/2015 21:57'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:10'!
 testNamedColumnsConfiguration
 	self
 		assert: (String streamContents: [ :stream |
@@ -466,9 +466,9 @@ testNamedColumnsConfiguration
 							Dictionary newFromPairs: #(x 100 y 200 z 300).
 							Dictionary newFromPairs: #(x 400 y 500 z 600). 
 							Dictionary newFromPairs: #(x 700 y 800 z 900) } ])
-		equals: (String crlf join: #( '"x","y","z"' '"100","200","300"' '"400","500","600"' '"700","800","900"' ''))! !
+		equals: (String crlfString join: #( '"x","y","z"' '"100","200","300"' '"400","500","600"' '"700","800","900"' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/15/2012 23:06'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:16'!
 testObjectFieldsTestObjects
 	self
 		assert: (String streamContents: [ :stream |
@@ -479,9 +479,9 @@ testObjectFieldsTestObjects
 							NeoCSVTestObject example. 
 							NeoCSVTestObject example. 
 							NeoCSVTestObject example } ])
-		equals: (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' ''))! !
+		equals: (String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/13/2013 13:07'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:23'!
 testObjectFieldsTestObjectsExtra
 	self
 		assert: (String streamContents: [ :stream |
@@ -497,13 +497,13 @@ testObjectFieldsTestObjectsExtra
 							NeoCSVTestObject example. 
 							NeoCSVTestObject example. 
 							NeoCSVTestObject example } ])
-		equals: (String crlf join: #( 
+		equals: (String crlfString join: #( 
 					'x,empty,y,constant,z' 
 					'100,,200,X,300' 
 					'100,,200,X,300' 
 					'100,,200,X,300' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 5/13/2013 12:53'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:28'!
 testObjectFieldsTestObjectsUsingBlockAccessors
 	self
 		assert: (String streamContents: [ :stream |
@@ -517,9 +517,9 @@ testObjectFieldsTestObjectsUsingBlockAccessors
 							NeoCSVTestObject example. 
 							NeoCSVTestObject example. 
 							NeoCSVTestObject example } ])
-		equals: (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' ''))! !
+		equals: (String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/26/2012 20:39'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:32'!
 testRawFieldsDictionaries
 	self
 		assert: (String streamContents: [ :stream |
@@ -530,9 +530,9 @@ testRawFieldsDictionaries
 							Dictionary newFromPairs: #(x 100 y 200 z 300).
 							Dictionary newFromPairs: #(x 400 y 500 z 600). 
 							Dictionary newFromPairs: #(x 700 y 800 z 900) } ])
-		equals: (String crlf join: #( '"x","y","z"' '100,200,300' '400,500,600' '700,800,900' ''))! !
+		equals: (String crlfString join: #( '"x","y","z"' '100,200,300' '400,500,600' '700,800,900' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/15/2012 23:06'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:37'!
 testRawFieldsTestObjects
 	self
 		assert: (String streamContents: [ :stream |
@@ -543,18 +543,18 @@ testRawFieldsTestObjects
 							NeoCSVTestObject example. 
 							NeoCSVTestObject example. 
 							NeoCSVTestObject example } ])
-		equals: (String crlf join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' ''))! !
+		equals: (String crlfString join: #( '"x","y","z"' '100,200,300' '100,200,300' '100,200,300' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/14/2012 20:58'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:41'!
 testSimple
 	self
 		assert: (String streamContents: [ :stream |
 					(NeoCSVWriter on: stream)
 						nextPut: #(one two three);
 						nextPutAll: #( (1 2 3) (4 5 6) (7 8 9)) ])
-		equals: (String crlf join: #( '"one","two","three"' '"1","2","3"' '"4","5","6"' '"7","8","9"' ''))! !
+		equals: (String crlfString join: #( '"one","two","three"' '"1","2","3"' '"4","5","6"' '"7","8","9"' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 6/15/2012 12:45'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:46'!
 testSimpleRaw
 	self
 		assert: (String streamContents: [ :stream |
@@ -562,23 +562,23 @@ testSimpleRaw
 						fieldWriter: #raw;
 						nextPut: #(one two three);
 						nextPutAll: #( (1 2 3) (4 5 6) (7 8 9)) ])
-		equals: (String crlf join: #( 'one,two,three' '1,2,3' '4,5,6' '7,8,9' ''))! !
+		equals: (String crlfString join: #( 'one,two,three' '1,2,3' '4,5,6' '7,8,9' ''))! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 1/14/2014 23:37'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:51:54'!
 testWriteEmbeddedQuote
 	| header |
 	header := String streamContents: [ :out |
 		(NeoCSVWriter on: out)
 			nextPut: #(foo 'x"y"z') ].
-	self assert: header equals: '"foo","x""y""z"', String crlf! !
+	self assert: header equals: '"foo","x""y""z"', String crlfString ! !
 
-!NeoCSVWriterTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 12/11/2013 21:50'!
+!NeoCSVWriterTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:52:02'!
 testWriteHeader
 	| header |
 	header := String streamContents: [ :out |
 		(NeoCSVWriter on: out)
 			writeHeader: #(foo bar) ].
-	self assert: header equals: '"foo","bar"', String crlf! !
+	self assert: header equals: '"foo","bar"', String crlfString ! !
 
 !NeoNumberParserTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 12/2/2012 17:02'!
 testBinaryIntegers
@@ -605,11 +605,11 @@ testErrors
 	self should: [ NeoNumberParser parse: '' ] raise: Error.
 	self should: [ NeoNumberParser parse: '.5' ] raise: Error.! !
 
-!NeoNumberParserTests methodsFor: 'testing' stamp: 'SvenVanCaekenberghe 12/2/2012 17:08'!
+!NeoNumberParserTests methodsFor: 'testing' stamp: 'hlsf 6/28/2024 11:55:26'!
 testFloats
 	#('1.5' 1.5 '-1.5' -1.5 '0.0' 0.0 '3.14159' 3.14159 '1e3' 1000.0 '1e-2' 0.01)
 		pairsDo: [ :string :float | 
-			self assert: ((NeoNumberParser parse: string) closeTo: float) ]! !
+			self assert: (((NeoNumberParser parse: string) - float)) abs < 1e-10 ]! !
 
 !NeoNumberParserTests methodsFor: 'testing' stamp: 'hjh 5/14/2015 20:06'!
 testHexadecimalIntegers
