@@ -1,6 +1,23 @@
 # Cuis-NeoCSV
-Read and write CSV converting to or from Smalltalk objects.  
-Port from http://www.smalltalkhub.com/#!/~SvenVanCaekenberghe/Neo
+Read and write CSV converting to or from Smalltalk objects.
+ 
+Description from: https://github.com/svenvc/docs/blob/master/neo/neo-csv-paper.md
+Basically, NeoCSV deals with a format that
+
+-is text based (ASCII, Latin1, Unicode)
+-consists of records, 1 per line (any line ending convention)
+-where records consist of fields separated by a delimiter (comma, tab, semicolon)
+-where every record has the same number of fields
+-where fields can be quoted should they contain separators or line endings
+
+https://github.com/svenvc/docs/blob/master/neo/neo-csv-paper.md
+
+The port was done from from http://www.smalltalkhub.com/#!/~SvenVanCaekenberghe/Neo.
+Now on github: https://github.com/svenvc/NeoCSV
+
+To do: find out if there are changes in the meantime to be ported also.
+
+
 
 Log of port of version 
 
@@ -16,6 +33,7 @@ https://github.com/hhzl/Cuis-NeoCSV/issues/5
 
 For Cuis version Cuis4.2-2243.image
 
+Changes by Hilaire Fernandez to bring it up to Cuis 7 have been merged.
 
 # Section 1 -- Initial port without fixes
 
