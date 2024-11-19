@@ -64,5 +64,23 @@ It is left with issue [#4 #testHexadecimalIntegers] (https://github.com/hhzl/Cui
 ## Conclusion -- Port status
 - Issue #4 is a minor error and needs no fixing in order to use this package.
 - Class #NeoCSVBenchmark has not been ported.
+
+- The package requires ``SqueakCompatibility.pck.st`` to be loaded and at least Cuis4.2-2243.image
+- The following changes were applied to the code before file in
+
+   Replace ``codePoint``
+   with ``unicodeCodePoint``
+
+   Replace ``String crlf``
+   with ``String crlfString``
+
+   Replace ``String cr ``
+   with ``String crString ``
+
+   Note: there is a space after 'cr' and 'crString'
+
+   Replace ``String lf``
+   with ``String lfString``
+
 - Major port is done as of May 2015. Minor fixes later.
 - [Documentation](https://github.com/svenvc/docs/blob/master/neo/neo-csv-paper.md)
