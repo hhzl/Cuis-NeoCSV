@@ -21,22 +21,15 @@ To do: find out if there are changes in the meantime that need to be ported also
 
 
 
-Log of port of 2015 version 
+## Log of port of 2015 version 
 
-Name: Neo-CSV-Core-SvenVanCaekenberghe.22
-Author: SvenVanCaekenberghe
-Time: 10 May 2015, 10:07:22.199998 pm
-
-Name: Neo-CSV-Tests-SvenVanCaekenberghe.19
-Author: SvenVanCaekenberghe
-Time: 10 May 2015, 10:07:41.797345 pm
 
 https://github.com/hhzl/Cuis-NeoCSV/issues/5
 
 See Documentation folder.
 
 
-Changes for Cuis 7
+## Changes for Cuis 7
 
 Changes by Hilaire Fernandez to bring it up to Cuis 7 have been merged.
 
