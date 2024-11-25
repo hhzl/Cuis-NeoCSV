@@ -1,5 +1,5 @@
 ## CSV reading Examples 
-taken from ``Dynabook.pck.st`` (https://github.com/dybo/)
+taken from ``Dynabook.pck.st`` (https://github.com/Dynamic-Book/DyboApp)
 
 
 ````
