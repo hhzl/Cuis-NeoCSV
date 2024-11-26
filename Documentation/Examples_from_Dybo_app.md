@@ -53,7 +53,7 @@ timeSlotName,start, end "
 
 ## CSV writing examples 
 
-````Smalltyalk
+````Smalltalk
 
 DyStudent class>> export: persons to: writeStream
 	| writer |
@@ -76,7 +76,7 @@ DyDayInterval class>>export: daysOff to: writeStream
 ````
 
 
-````
+````Smalltalk
 DyTimeSlot class>> export: timeSlots to: writeStream
 	| writer |
 	writer := NeoCSVWriter on: writeStream.
