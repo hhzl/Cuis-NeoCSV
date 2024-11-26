@@ -1,10 +1,41 @@
 The examples are taken from ``Dynabook.pck.st`` (https://github.com/Dynamic-Book/DyboApp)
 
+## Domain classes 
+The three classes given below have  #importFrom: and export:to: methods. They use streams with CSV data.
+
+````Smalltalk
+Object subclass: #DyPerson
+	instanceVariableNames: 'lastName firstName email'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Dynabook-Model-Business'
+````
+
+````Smalltalk
+Object subclass: #DyDayInterval
+	instanceVariableNames: 'start end'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Dynabook-Model-Business'
+````
+
+
+````Smalltalk
+Magnitude subclass: #DyTimeSlot
+	instanceVariableNames: 'name startTime endTime'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Dynabook-Model-Business'
+````
+
+
+
+
 ## CSV reading examples 
 
 ````Smalltalk
-DyStudent class>> importFrom: readStream 
-"Import student from a CSV file"
+DyPerson class>> importFrom: readStream 
+"Import person from a CSV file"
 | reader |
     reader := NeoCSVReader on: readStream.
     reader readHeader = #('firstName' 'lastName' 'email')
@@ -55,7 +86,7 @@ timeSlotName,start, end "
 
 ````Smalltalk
 
-DyStudent class>> export: persons to: writeStream
+DyPerson class>> export: persons to: writeStream
 	| writer |
 	writer := NeoCSVWriter on: writeStream.
 	writer writeHeader: #(firstName lastName email);
