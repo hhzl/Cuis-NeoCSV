@@ -31,9 +31,29 @@ DyDayInterval class>> importFrom: readStream
 ````
 
 
-## CSV writing examples 
 
 ````Smalltalk
+DyTimeSlot class>> importFrom: readStream
+"Import time slots from a CSV file with header:
+timeSlotName,start, end "
+| reader |
+	reader := NeoCSVReader on: readStream.
+	reader readHeader = #('slotName' 'start' 'end')
+		ifFalse: [self error: 'Headers should be slotName, start, end'].
+	reader 
+		recordClass: self;
+		addField: #slotName:;
+		addField: #start: converter: [:s | Time fromString: s];
+		addField: #end: converter: [:s | Time fromString: s].
+	^ reader upToEnd asSortedCollection 
+````
+
+
+
+
+## CSV writing examples 
+
+````Smalltyalk
 
 DyStudent class>> export: persons to: writeStream
 	| writer |
@@ -53,4 +73,15 @@ DyDayInterval class>>export: daysOff to: writeStream
 	writer writeHeader: #(start end);
 		addFields: #(start end);
 		nextPutAll: daysOff 
+````
+
+
+````
+DyTimeSlot class>> export: timeSlots to: writeStream
+	| writer |
+	writer := NeoCSVWriter on: writeStream.
+	writer writeHeader: #(slotName start end);
+		addFields: #(slotName start end);
+		nextPutAll: timeSlots
+
 ````
