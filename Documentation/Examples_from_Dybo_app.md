@@ -1,9 +1,9 @@
-## CSV reading Examples 
-taken from ``Dynabook.pck.st`` (https://github.com/Dynamic-Book/DyboApp)
+The examples are taken from ``Dynabook.pck.st`` (https://github.com/Dynamic-Book/DyboApp)
 
+## CSV reading examples 
 
-````
-DyStudent importFrom: readStream 
+````Smalltalk
+DyStudent class>> importFrom: readStream 
 "Import student from a CSV file"
 | reader |
     reader := NeoCSVReader on: readStream.
@@ -16,8 +16,8 @@ DyStudent importFrom: readStream
 ````
 
 
-````
-DyDayInterval importFrom: readStream
+````Smalltalk
+DyDayInterval class>> importFrom: readStream
 "Import days off from a CSV file with header: start, end "
 | reader |
     reader := NeoCSVReader on: readStream.
@@ -31,5 +31,26 @@ DyDayInterval importFrom: readStream
 ````
 
 
+## CSV writing examples 
+
+````Smalltalk
+
+DyStudent class>> export: persons to: writeStream
+	| writer |
+	writer := NeoCSVWriter on: writeStream.
+	writer writeHeader: #(firstName lastName email);
+		addFields: #(firstName lastName email);
+		nextPutAll: persons 
+````
 
 
+
+
+````Smalltalk
+DyDayInterval class>>export: daysOff to: writeStream
+	| writer |
+	writer := NeoCSVWriter on: writeStream.
+	writer writeHeader: #(start end);
+		addFields: #(start end);
+		nextPutAll: daysOff 
+````
