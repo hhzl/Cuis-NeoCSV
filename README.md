@@ -31,7 +31,7 @@ See Documentation folder.
 
 ## Changes for Cuis 7
 
-Changes by Hilaire Fernandez to bring it up to Cuis 7 have been merged.
+Changes by Hilaire Fernandes to bring it up to Cuis 7 have been merged.
 
 
 ## Conclusion -- Port status
