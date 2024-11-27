@@ -1,3 +1,41 @@
+## Reading a word list
+
+Pictures have labels in different languages.
+
+````Smalltalk
+
+Object subclass: #PictureLabel
+	instanceVariableNames: 'pictureNumber language label english'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ATP10'
+````
+
+
+
+on the class side
+
+````Smalltalk
+importFrom: aReadStream
+
+| reader |
+reader  := NeoCSVReader on: aReadStream.
+reader readHeader = #('pictureNumber' 'language' 'label' 'english')
+        ifFalse: [self error: 'Headers should be pictureNumber, language, label, english'].
+       reader
+        recordClass: self;
+	 addField: #pictureNumber: converter: [:no | Number readFrom: no];
+        addFields: #(language: label: english:).
+^reader upToEnd 
+
+````
+
+Also note that according to the CSV specification white space counts. That means no white  space in the header definition otherwise there will be an error message.
+
+- <http://en.wikipedia.org/wiki/Comma-separated_values>
+- <http://tools.ietf.org/html/rfc4180>
+
+
 The examples are taken from ``Dynabook.pck.st`` (https://github.com/Dynamic-Book/DyboApp)
 
 ## Domain classes 
